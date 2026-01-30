@@ -2,5 +2,6 @@
 def search_replace(my_list, search, replace):
     for item in my_list:
         if item == search:
-            my_list[my_list.index(item)] = replace
+            Index = my_list.index(search)
+            my_list[Index] = replace
     return my_list
