@@ -13,5 +13,11 @@ def roman_to_int(roman_string):
     }
     total = 0
     for char in roman_string:
-        total += roman_numerals.get(char, 0)
+        if char == 'V' or char == 'X':
+            if total % 5 == 1:
+                total += roman_numerals[char] - 2
+            else:
+                total += roman_numerals[char]
+        else:
+            total += roman_numerals[char]
     return total
