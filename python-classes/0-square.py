@@ -6,7 +6,7 @@ for managing user information in the application.
 
 
 class Square:
-    pass
     '''
     empty class Square that defines a square
     '''
+    pass
