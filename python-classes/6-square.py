@@ -1,18 +1,17 @@
 #!/usr/bin/python3
 """
-This module defines the User class and related helper functions
-for managing user information in the application.
+This module defines a Square class with size and position attributes.
 """
 
 
 class Square:
     """
-    Represents a square.
+    Represents a square with size and position attributes.
     """
     def __init__(self, size=0, position=(0, 0)):
         """Initialize a Square with size and position validation."""
-        self.__size = size
-        self.__position = position
+        self.size = size           # use setter to validate
+        self.position = position   # use setter to validate
 
     def area(self):
         """Calculate and return the area of the square."""
@@ -40,12 +39,9 @@ class Square:
     @position.setter
     def position(self, value):
         """Set the position of the square with validation."""
-        if not isinstance(value, tuple) or len(value) != 2:
+        if (not isinstance(value, tuple) or len(value) != 2 or
+                not all(isinstance(num, int) and num >= 0 for num in value)):
             raise TypeError("position must be a tuple of 2 positive integers")
-        for num in value:
-            if not isinstance(num, int) or num < 0:
-                raise TypeError("position must be a tuple of 2 positive\
-                                 integers")
         self.__position = value
 
     def my_print(self):
