@@ -1,2 +1,2 @@
 -- display the score and the name by descending score
-SELECT score, name WHERE name IS  NOT NULL ORDER BY score DESC;
+SELECT score, name FROM second_table WHERE name IS  NOT NULL ORDER BY score DESC;
