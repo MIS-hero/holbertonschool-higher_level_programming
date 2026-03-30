@@ -4,6 +4,7 @@ app = Flask(__name__)
 
 users = {}
 
+
 @app.route("/")
 def home():
     return ("Welcome to the Flask API!")
@@ -21,7 +22,7 @@ def status():
 
 @app.route("/users/<username>")
 def get_user(username):
-    if username in users: 
+    if username in users:
         return jsonify(users[username])
     else:
         return jsonify({"error": "User not found"}), 404
@@ -33,11 +34,14 @@ def add_user():
     if data is None:
         return jsonify({"error": "Invalid JSON"}), 400
     if "username" not in data:
-        return jsonify({"error":"Username is required"}),400
+        return jsonify({"error": "Username is required"}), 400
     if data["username"] in users:
-        return jsonify({"error":"Username already exists"}),409
+        return jsonify({"error": "Username already exists"}), 409
     users[data["username"]] = data
-    return jsonify(data), 201
+    return jsonify({
+        "message": "User added",
+        "user": data})
 
 
-if __name__ == "__main__": app.run()
+if __name__ == "__main__":
+    app.run()
