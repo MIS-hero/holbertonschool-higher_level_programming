@@ -40,7 +40,7 @@ def add_user():
     users[data["username"]] = data
     return jsonify({
         "message": "User added",
-        "user": data})
+        "user": data}), 201
 
 
 if __name__ == "__main__":
