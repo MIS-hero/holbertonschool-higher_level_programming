@@ -1,9 +1,7 @@
-import json
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# Existing routes...
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -15,19 +13,6 @@ def about():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
-
-# New dynamic route
-@app.route('/items')
-def items():
-    try:
-        with open('items.json', 'r') as f:
-            data = json.load(f)
-            items_list = data.get('items', [])
-    except Exception as e:
-        print(f"Error reading items.json: {e}")
-        items_list = []
-
-    return render_template('items.html', items=items_list)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
